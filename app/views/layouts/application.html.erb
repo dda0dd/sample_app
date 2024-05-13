@@ -29,6 +29,18 @@
       </ul>
     </nav>
     <main>
+      <!--フラッシュメッセージの実装の共通化（成功時と失敗時それぞれに表示）-->
+      <!--<div>-->
+      <!--  <%#= flash[:notice] %>-->
+      <!--</div>-->
+      
+      <!--flashにeachメソッドを実行でキー（例 :notice）と対応する値（例 "投稿に成功しました。"）を取り出す-->
+        <% flash.each do |message_type, message| %>
+      <!--取り出したキーはmessage_type、値はmessageに代入する-->
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+      <!--<div class="flash-message notice">投稿に成功しました。</div>-->
+        <% end %>
+      
       <%= yield %>
     </main>
   

@@ -4,10 +4,19 @@ class ListsController < ApplicationController
   end
   
   def create
+    # データを受け取り新規登録するインスタンス作成
     @list = List.new(list_params)
+    # データをデータベースに保存するsaveメソッド実行
     if @list.save
+    # フラッシュメッセージを定義、詳細画面へリダイレクト
+      flash[:notice] = "投稿に成功しました。"
       redirect_to list_path(@list.id)
     else
+      # フラッシュメッセージを定義、new.html.erbを描画
+      # flash.now[:notice] = "投稿に失敗しました。"
+      
+      flash.now[:alert] = "投稿に失敗しました。"
+      # キーをalertに変更
       render :new
     end
   end

@@ -23,6 +23,8 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
+    # デバックツールでindexアクション内で該当変数の中身確認
+    # byebug
   end
 
   def show
